@@ -23,7 +23,7 @@ function generateExtractLoaders (loaders) {
   }).join('!')
 }
 
-var extractCSS = new ExtractTextPlugin('css/[name].css?[contenthash]')
+var extractCSS = new ExtractTextPlugin('[name].css?[contenthash]')
 var cssLoader = extractCSS.extract(['css'])
 var sassLoader = extractCSS.extract(['css', 'sass'])
 

@@ -5,13 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>{%=o.htmlWebpackPlugin.options.title%}</title>
-    <!--#include virtual="/sinclude/wp/{%=o.webpackConfig.viewName%}/cssi/{%=o.htmlWebpackPlugin.options.title%}.html" -->
+    <!-- css links -->
+    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
+    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+    {% } %}
 </head>
 
 <body>
     <h1>{%=o.htmlWebpackPlugin.options.title%}</h1>
     <div id="example" class="c"></div>
-    <!--#include virtual="/sinclude/wp/{%=o.webpackConfig.viewName%}/jsi/{%=o.htmlWebpackPlugin.options.title%}.html" -->
+    <!-- js links -->
+    {% for (var lib in o.webpackConfig.libs) { %}
+    <script src="../lib/{%=o.webpackConfig.libs[lib]%}.js"></script>
+    {% } %}
+    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+    {% } %}
 </body>
 
 </html>
