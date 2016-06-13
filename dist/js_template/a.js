@@ -85,7 +85,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "//g.mdcdn.cn/wp/dist/js_template/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -95,7 +95,12 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	/*
+	* @Author: dmyang
+	* @Date:   2015-08-05 00:25:43
+	* @Last Modified by:   dmyang
+	* @Last Modified time: 2016-03-17 19:23:15
+	*/
 	
 	'use strict';
 	
@@ -103,21 +108,25 @@
 	
 	__webpack_require__(201);
 	
-	var _ = __webpack_require__(204);
-	var moment = __webpack_require__(1);
+	// 直接使用npm模块
+	var _ = __webpack_require__(205);
+	//var moment = require('moment');
 	var url = __webpack_require__(198);
 	var report = __webpack_require__(194);
 	
 	var component = url.getQuery('component');
 	
 	var bar = __webpack_require__(32);
-	alert(bar.get() + 'ccd');
+	alert(bar.get() + 'ccdefhellolord');
 	
+	var moment = __webpack_require__(1);
 	console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+	
+	//下面用到的$是window.$
 	if ('dialog' === component) {
 	    __webpack_require__.e/* nsure */(4, function (require) {
 	        var dialog = __webpack_require__(191);
-	
+	        // todo ...
 	
 	        $('#dialog').removeClass('none');
 	    });
@@ -126,16 +135,16 @@
 	if ('toast' === component) {
 	    __webpack_require__.e/* nsure */(5, function (require) {
 	        var toast = __webpack_require__(195);
-	
+	        // todo ...1213456
 	
 	        $('#toast').removeClass('none');
 	    });
 	}
 	
-	var logoImg = __webpack_require__(292);
+	var logoImg = __webpack_require__(293);
 	var $logo = $('<img />').attr('src', logoImg);
 	
-	Zepto('#logo').html($logo);
+	$('#logo').html($logo);
 
 /***/ },
 /* 1 */
@@ -539,7 +548,7 @@
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(288)("./" + name);
+	                __webpack_require__(289)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -13873,7 +13882,12 @@
 /* 194 */
 /***/ function(module, exports) {
 
-	
+	/*
+	* @Author: dm.yang
+	* @Date:   2015-03-03 16:42:58
+	* @Last Modified by:   dmyang
+	* @Last Modified time: 2015-08-05 00:48:58
+	*/
 	
 	'use strict';
 	
@@ -13881,6 +13895,7 @@
 	
 	function report(id) {
 	    console.log('report id:%s', id);
+	    // todo
 	}
 	
 	module.exports = report;
@@ -13892,7 +13907,12 @@
 /* 198 */
 /***/ function(module, exports) {
 
-	
+	/*
+	* @Author: dm.yang
+	* @Date:   2015-01-15 15:06:38
+	* @Last Modified by:   dmyang
+	* @Last Modified time: 2015-08-31 21:31:18
+	*/
 	
 	'use strict';
 	
@@ -13962,7 +13982,8 @@
 /***/ },
 /* 202 */,
 /* 203 */,
-/* 204 */
+/* 204 */,
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -29042,7 +29063,6 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(190)(module), (function() { return this; }())))
 
 /***/ },
-/* 205 */,
 /* 206 */,
 /* 207 */,
 /* 208 */,
@@ -29125,7 +29145,8 @@
 /* 285 */,
 /* 286 */,
 /* 287 */,
-/* 288 */
+/* 288 */,
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
@@ -29341,17 +29362,17 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 288;
+	webpackContext.id = 289;
 
 
 /***/ },
-/* 289 */,
 /* 290 */,
 /* 291 */,
-/* 292 */
+/* 292 */,
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "webpack.png?0714810ae3fb211173e2964249507195";
+	module.exports = __webpack_require__.p + "./img/webpack.png?0714810ae3fb211173e2964249507195";
 
 /***/ }
 /******/ ]);

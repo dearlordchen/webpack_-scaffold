@@ -3,21 +3,28 @@ webpackJsonp([5],{
 /***/ 195:
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	/*
+	* @Author: dm.yang
+	* @Date:   2015-03-12 13:37:19
+	* @Last Modified by:   dmyang
+	* @Last Modified time: 2015-08-18 20:44:05
+	*/
 	
 	'use strict';
 	
-	__webpack_require__(203);
+	__webpack_require__(204);
 	
 	console.info('require toast module.');
 	
-	function Toast() {}
+	function Toast() {
+	    // todo
+	}
 	
 	module.exports = Toast;
 
 /***/ },
 
-/***/ 203:
+/***/ 204:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(55)();

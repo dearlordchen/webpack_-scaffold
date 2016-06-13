@@ -16,7 +16,7 @@ var clean = require('gulp-clean')
 var sftp = require('gulp-sftp')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var myConfig = require('../../js_config/my-config.json')
+var myConfig = require('../../config/my-config.json')
 var glob = require('glob')
 
 
@@ -46,20 +46,8 @@ function generateSinclude(webpackConf, entrys) {
     _.forEach(entrys, function(v,k) {
         htmlPages.push(new HtmlWebpackPlugin({
             title: k,
-            filename: 'html/'+k+'.html',
+            filename: k+'.html',
             template: path.resolve(__dirname, './tpl/'+k+'.html'),
-            chunks: [k]
-        }));
-
-        htmlPages.push(new HtmlWebpackPlugin({
-            filename: incPath+viewName+'/cssi/'+k+'.html',
-            template: path.resolve(__dirname, './cssi.html'),
-            chunks: [k]
-        }));
-
-        htmlPages.push(new HtmlWebpackPlugin({
-            filename: incPath+viewName+'/jsi/'+k+'.html',
-            template: path.resolve(__dirname, './jsi.html'),
             chunks: [k]
         }));
     });
@@ -77,6 +65,7 @@ function getName(filePath){
 // gulp任务
 // -------------------------------
 // 实时编译
+//watch 所有入口js文件，如果有修改就编译生成相关文件，不影响项目内其他文件
 gulp.task('default',function(event){
     var watcher = gulp.watch(pagesDir+'/*');
     watcher.on('change', function(event) {
@@ -92,30 +81,13 @@ gulp.task('default',function(event){
 
 
         wpTask('dev',map,function(){
-            console.log('uploading relative files')
-            gulp.src( distPath + viewName + '/**/'+filename+'.*')
-                .pipe(sftp({
-                    host: myConfig.sftp.dev.host,
-                    port: myConfig.sftp.dev.port,
-                    user: myConfig.sftp.dev.user,
-                    pass: myConfig.sftp.dev.pass,
-                    remotePath: myConfig.sftp.dev.staticRemotePath + viewName
-                }))
-            console.log('uploading ssi...')
-            gulp.src(incPath + viewName + '/**/'+filename+'.*')
-                .pipe(sftp({
-                    host: myConfig.sftp.dev.host,
-                    port: myConfig.sftp.dev.port,
-                    user: myConfig.sftp.dev.user,
-                    pass: myConfig.sftp.dev.pass,
-                    remotePath: myConfig.sftp.dev.ssiRemotePath + viewName
-                }))})
-
-    });
+            console.log('project dev compile finished...')
+        });
+      })
 })
 
-
-gulp.task('idc',function(event){
+//针对单个入口发布模式编译打包
+gulp.task('build',function(event){
 
     var argv = require('yargs').argv,
         ext = argv.ext||'js',
@@ -138,48 +110,25 @@ gulp.task('idc',function(event){
     map[filename] = filePath
 
     wpTask('build',map,function(){
-        console.log('uploading relative files')
-        gulp.src([distPath + viewName + '/**/'+filename+'.*.*.*',distPath + viewName + '/**/'+filename+'.html'])
-            .pipe(sftp({
-                host: myConfig.sftp.dev.host,
-                port: myConfig.sftp.dev.port,
-                user: myConfig.sftp.dev.user,
-                pass: myConfig.sftp.dev.pass,
-                remotePath: myConfig.sftp.dev.staticRemotePath + viewName
-            }))
-        console.log('uploading ssi...')
-        gulp.src(incPath + viewName + '/**/'+filename+'.*')
-            .pipe(sftp({
-                host: myConfig.sftp.dev.host,
-                port: myConfig.sftp.dev.port,
-                user: myConfig.sftp.dev.user,
-                pass: myConfig.sftp.dev.pass,
-                remotePath: myConfig.sftp.dev.ssiRemotePath + viewName
-        }))})
-
-})
-
-gulp.task('w', ['upload-ssi-dev'], function () {
-    gulp.watch('../**', ['upload-ssi-dev'])
-})
+        console.log('project build compile finished...')
+    })
+  })
 
 /*gulp.task('w', function () {
  gulp.watch(pagesDir+'*//*', ['upload-ssi-dev'])
 
  })*/
 
-gulp.task('d',['upload-ssi-dev'])
+//整个项目开发模式编译
+gulp.task('d',['webpack-dev'])
 
-gulp.task('b', ['upload-ssi-build'], function () {
+//整个项目发布模式编译
+gulp.task('b', ['webpack-build'])
 
+//watch 整个项目目录，只要有文件修改就执行开发模式编译
+gulp.task('w', ['webpack-dev'], function () {
+    gulp.watch('../**', ['webpack-dev'])
 })
-
-gulp.task('wb', ['upload-ssi-build'], function () {
-    gulp.watch(pagesDir+'/*', ['upload-ssi-build'])
-})
-
-
-
 
 // 清除多余文件
 gulp.task('clean', function () {
@@ -335,9 +284,9 @@ gulp.task('publish', function () {
 function wpTask(env,map,cb){
     var webpackConf = {}
     if(env == 'build'){
-        webpackConf = require('../../js_config/webpack.js.prod.conf.js')
+        webpackConf = require('../../config/webpack.js.prod.conf.js')
     }else{
-        webpackConf = require('../../js_config/webpack.js.dev.conf.js')
+        webpackConf = require('../../config/webpack.js.dev.conf.js')
     }
 
     //var webpackConf = _.clone(webpackDevConf)
@@ -347,7 +296,7 @@ function wpTask(env,map,cb){
 
     webpackConf.output.path = path.resolve(__dirname, '../../dist/') + '/' + viewName + '/'
     //webpackConf.output.chunkFilename ='[chunkhash:8].chunk.js'
-    webpackConf.output.publicPath = myConfig.static.publicPath + viewName + '/'
+    //webpackConf.output.publicPath = myConfig.static.publicPath + viewName + '/'
 
     webpackConf.env = env
     generateSinclude(webpackConf, map)

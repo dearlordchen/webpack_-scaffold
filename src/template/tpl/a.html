@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>{%=o.webpackConfig.viewName%}</title>
-    <!--#include virtual="/sinclude/wp/{%=o.webpackConfig.viewName%}/cssi/{%=o.htmlWebpackPlugin.options.title%}.html" -->
+    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
+    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+    {% } %}
 </head>
 
 <body>
@@ -15,7 +17,13 @@
     <div id="dialog" class="none dialog">dialog</div>
     <p><i class="icon-house"></i></p>
     <p id="logo"></p>
-    <!--#include virtual="/sinclude/wp/{%=o.webpackConfig.viewName%}/jsi/{%=o.htmlWebpackPlugin.options.title%}.html" -->
+    {% for (var lib in o.webpackConfig.libs) { %}
+    <script src="../lib/{%=o.webpackConfig.libs[lib]%}.js"></script>
+    {% } %}
+    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+    {% } %}
+
 </body>
 
 </html>

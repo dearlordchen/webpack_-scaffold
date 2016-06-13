@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "//g.mdcdn.cn/wp/dist/js_template/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -45,13 +45,17 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/**
+	 * Created by lordchen on 16/5/17.
+	 */
 	
 	var d = __webpack_require__(192);
 	var ui_title = __webpack_require__(197);
 	var ui_line = __webpack_require__(196);
+	//模块中显示引用zepto
+	var $ = __webpack_require__(294);
 	console.log(d.format(new Date(), 'MM/DD YY'));
-	var cartImg = __webpack_require__(291);
+	var cartImg = __webpack_require__(292);
 	$("#cart").attr('src', cartImg);
 	$("#title").html(ui_title.render);
 	ui_line.init($("#cont"));
@@ -867,10 +871,12 @@
 /***/ 192:
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
-	
+	var __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * Created by lordchen on 16/5/24.
+	 */
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, module) {
 	    function $formatDate(date, formatStr) {
+	        //格式化时间
 	        var arrWeek = ['日', '一', '二', '三', '四', '五', '六'],
 	            str = formatStr.replace(/yyyy|YYYY/, date.getFullYear()).replace(/yy|YY/, $addZero(date.getFullYear() % 100, 2)).replace(/mm|MM/, $addZero(date.getMonth() + 1, 2)).replace(/m|M/g, date.getMonth() + 1).replace(/dd|DD/, $addZero(date.getDate(), 2)).replace(/d|D/g, date.getDate()).replace(/hh|HH/, $addZero(date.getHours(), 2)).replace(/h|H/g, date.getHours()).replace(/ii|II/, $addZero(date.getMinutes(), 2)).replace(/i|I/g, date.getMinutes()).replace(/ss|SS/, $addZero(date.getSeconds(), 2)).replace(/s|S/g, date.getSeconds()).replace(/w/g, date.getDay()).replace(/W/g, arrWeek[date.getDay()]);
 	        return str;
@@ -892,13 +898,15 @@
 /***/ 196:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/**
+	 * Created by lordchen on 16/5/24.
+	 */
 	
 	__webpack_require__(199);
 	
 	exports.init = function ($dom) {
 	
-	    var template = __webpack_require__(289);
+	    var template = __webpack_require__(290);
 	    var html = template({
 	        "stooges": [{ "name": { "cc": ["Moe", "gg", "hh"] } }, { "name": "Larry" }, { "name": "Curly" }]
 	    });
@@ -915,7 +923,9 @@
 /***/ 197:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/**
+	 * Created by lordchen on 16/5/24.
+	 */
 	
 	__webpack_require__(200);
 	
@@ -939,7 +949,7 @@
 
 /***/ },
 
-/***/ 289:
+/***/ 290:
 /***/ function(module, exports, __webpack_require__) {
 
 	var H = __webpack_require__(34);
@@ -947,10 +957,17 @@
 
 /***/ },
 
-/***/ 291:
+/***/ 292:
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAqCAYAAADI3bkcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo0NEM0N0NCNjQ0OUFFNDExODZGN0Q3QjIwREM5MzZEMyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpEM0E0NTZEODlBNEUxMUU0OTVGQTgwMzIwNDRFNkZFRiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpEM0E0NTZENzlBNEUxMUU0OTVGQTgwMzIwNDRFNkZFRiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjQ1QzQ3Q0I2NDQ5QUU0MTE4NkY3RDdCMjBEQzkzNkQzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjQ0QzQ3Q0I2NDQ5QUU0MTE4NkY3RDdCMjBEQzkzNkQzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+SD27/QAAAndJREFUeNrUmE1LG0EYx2fXVBDd9CCCEfUi9NAKFbIKFV+CGsGb157tFxBKPdlLP4EfwHO/QQWNUN9NyEXBWFp6811po9g3X9b+J0zqaLNv7mZm8sCPzc7uTv558p+ZZ1aLx+NLhJAechtfwXPwgwiIbDbr6369RFsb6CeKBhXcCzTGO9aeVFkwH3PsOFQpgtfBOWgHsUoQfAk+qpzlUoNuXmUflxJc9PFgpQjeAnugCTyrBMFK28JO8KyqttCwNJdqjzFbqBZrdhneB58VFPwi4nDxA3jCluu3Mosf0zSfssngUHe4T6VleoAdU06CF8EF6AKPJQse9iL4nNUWVSAhSyns8Igrdx0F87aQOR/TfzgKcvD7jptgFRaQIV6Lm+AMyLPZokWS4CT/b+tO0w245srNJGsT6d8oswQtexccBd/8vFgCNxPjr0fpeaKvfwrntUBkdulgo4Mug0SdebEE6TLNwnFjc6POsqyETDu4CS5sTltbWrWoYZx+z+fJanr9pWDBxeIr5UXwvzAMY7lQKG/nBgX6txkHuiRTK6R9CT4+OXlfEJzbahS4OS0mZwH+vSo22hY/nX3d9+tjay2T/oP2b4L9O+ulgP8vyWAT1JC7r7XKZQeNy/A8fy3iox/6Szv4ARCSOKfLO7DD9kMyTMIW6iE+gTf3G/1kmM4Uv0E1aACheDmMt5d28QussGekbU51n/dL34X4FZySXW7abfOdfuARqBegbRn+7g2aYQtMgi8ikhlGhqVs84NkWHpEAjw7AqbZ5zEwE8Kqd6dPZH8mzAxPs8otxn1J0HDtUy/nAClHn0EEvwIHYJdZIoxw7fOvAAMAw+irG/7RwKEAAAAASUVORK5CYII="
+
+/***/ },
+
+/***/ 294:
+/***/ function(module, exports) {
+
+	module.exports = Zepto;
 
 /***/ }
 

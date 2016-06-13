@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "//g.mdcdn.cn/wp/dist/js_template/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -44,15 +44,16 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	"use strict";
-	
-	var a = 1;
+	/**
+	 * Created by lordchen on 16/5/23.
+	 */
+	const a = 1;
 	
 	console.log(a);
 	
 	if (true) {
-	  var _a = 3;
-	  console.log(_a);
+	  let a = 3;
+	  console.log(a);
 	}
 	
 	console.log(a);

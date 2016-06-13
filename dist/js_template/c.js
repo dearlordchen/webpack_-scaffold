@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "//g.mdcdn.cn/wp/dist/js_template/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -45,12 +45,16 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/**
+	 * Created by lordchen on 16/5/17.
+	 */
+	//var $ = require('jquery');
 	
+	__webpack_require__(202);
 	var bar = __webpack_require__(32);
-	var template = __webpack_require__(290);
+	var template = __webpack_require__(291);
 	var html = template({
-	    "stooges": [{ "name": "Moe" }, { "name": "Larry" }, { "name": "Curly" }]
+	    "stooges": [{ "name": "Moe123667788901" }, { "name": "Larry" }, { "name": "Curly" }]
 	});
 	
 	alert(bar.get());
@@ -880,7 +884,14 @@
 
 /***/ },
 
-/***/ 290:
+/***/ 202:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 291:
 /***/ function(module, exports, __webpack_require__) {
 
 	var H = __webpack_require__(34);

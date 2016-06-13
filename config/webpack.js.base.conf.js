@@ -9,7 +9,7 @@ module.exports = {
   entry: {},
   output: {
     path: path.resolve(__dirname, '../dist/'),
-    publicPath: '//g.mdcdn.cn/wp/dist/' // 静态文件地址
+    //publicPath: '//g.mdcdn.cn/wp/dist/' // 静态文件地址
   },
   resolve: {
     extensions: ['', '.js', '.vue','.jsx'],
@@ -44,7 +44,7 @@ module.exports = {
         loader: 'url',
         query: {
           limit: 10000,
-          name: '[name].[ext]?[hash]'
+          name: './img/[name].[ext]?[hash]'
         }
       },
       {

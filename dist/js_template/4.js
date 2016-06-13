@@ -3,17 +3,24 @@ webpackJsonp([4],{
 /***/ 191:
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	/*
+	* @Author: dm.yang
+	* @Date:   2015-03-10 16:15:27
+	* @Last Modified by:   dmyang
+	* @Last Modified time: 2015-08-18 20:43:58
+	*/
 	
 	'use strict';
 	
-	__webpack_require__(202);
+	__webpack_require__(203);
 	
 	console.info('require dialog module.');
 	
 	var mask = __webpack_require__(193);
 	
-	function Dialog() {}
+	function Dialog() {
+	    // todo
+	}
 	
 	module.exports = Dialog;
 
@@ -22,19 +29,26 @@ webpackJsonp([4],{
 /***/ 193:
 /***/ function(module, exports) {
 
-	
+	/*
+	* @Author: dmyang
+	* @Date:   2015-08-05 00:23:19
+	* @Last Modified by:   dmyang
+	* @Last Modified time: 2015-08-05 01:38:59
+	*/
 	
 	'use strict';
 	
 	console.info('require mask module.');
 	
-	function mask() {}
+	function mask() {
+	    // todo
+	}
 	
 	module.exports = mask;
 
 /***/ },
 
-/***/ 202:
+/***/ 203:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(55)();
