@@ -30,7 +30,7 @@ function generateExtractLoaders (loaders) {
   }).join('!')
 }
 
-var extractCSS = new ExtractTextPlugin('css/[name].'+timestamp+'.[contenthash:5].css')
+var extractCSS = new ExtractTextPlugin('[name].'+timestamp+'.[contenthash:5].css')
 var cssLoader = extractCSS.extract(['css'])
 var sassLoader = extractCSS.extract(['css', 'sass'])
 

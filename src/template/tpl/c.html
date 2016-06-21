@@ -17,7 +17,7 @@
     <div id="stoos"></div>
     <!-- js links -->
     {% for (var lib in o.webpackConfig.libs) { %}
-    <script src="../lib/{%=o.webpackConfig.libs[lib]%}.js"></script>
+    <script src="../../lib/{%=o.webpackConfig.libs[lib]%}.js"></script>
     {% } %}
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>

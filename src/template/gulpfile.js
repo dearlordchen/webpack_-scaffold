@@ -44,12 +44,14 @@ function generateSinclude(webpackConf, entrys) {
     var htmlPages = [];
 
     _.forEach(entrys, function(v,k) {
+
         htmlPages.push(new HtmlWebpackPlugin({
             title: k,
             filename: k+'.html',
             template: path.resolve(__dirname, './tpl/'+k+'.html'),
             chunks: [k]
         }));
+
     });
 
     webpackConf.plugins = (webpackConf.plugins || []).concat(htmlPages);
@@ -283,18 +285,18 @@ gulp.task('publish', function () {
 
 function wpTask(env,map,cb){
     var webpackConf = {}
+
     if(env == 'build'){
-        webpackConf = require('../../config/webpack.js.prod.conf.js')
+        webpackConf = require('../../config/webpack.js.prod.conf.js');
     }else{
         webpackConf = require('../../config/webpack.js.dev.conf.js')
     }
 
-    //var webpackConf = _.clone(webpackDevConf)
-
-
     webpackConf.entry = map;
+    webpackConf.output.path = path.resolve(__dirname, '../../dist/') + sep + viewName + sep+env;
+    //webpackConf.output.publicPath = myConfig.static.publicPath + viewName + '/'+dir+ '/';
 
-    webpackConf.output.path = path.resolve(__dirname, '../../dist/') + '/' + viewName + '/'
+
     //webpackConf.output.chunkFilename ='[chunkhash:8].chunk.js'
     //webpackConf.output.publicPath = myConfig.static.publicPath + viewName + '/'
 
@@ -309,7 +311,7 @@ function wpTask(env,map,cb){
     //   })
     // );
 
-    console.log(webpackConf);
+    //console.log(webpackConf);
     webpack(webpackConf, function (err, stats) {
         if (err) throw new gutil.PluginError('build', err)
         gutil.log('[build]', stats.toString({
